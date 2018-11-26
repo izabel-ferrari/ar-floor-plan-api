@@ -13,6 +13,7 @@ def hello():
 
 @app.route("/upload", methods=['POST'])
 def upload_file():
+	print(request)
 	file = request.files['image']
 	filename = file.filename
 	filepath = app.config['UPLOAD_FOLDER']
