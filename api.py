@@ -13,8 +13,7 @@ def hello():
 
 @app.route("/upload", methods=['POST'])
 def upload_file():
-	print(request)
-	file = request.files['image']
+	file = request.files.get('photo', '')
 	filename = file.filename
 	filepath = app.config['UPLOAD_FOLDER']
 	if not os.path.exists(filepath):
@@ -26,7 +25,6 @@ def upload_file():
 	data = {}
 	data['lines_coord'] = newLines
 	json_data = json.dumps(data)
-
 	return Response(json_data)
 
 if __name__ == "__main__":
